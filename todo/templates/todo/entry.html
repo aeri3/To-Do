@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> {{ entry.title }} </title>
+</head>
+<body>
+    
+    <h1> {{ entry.title }} </h1>
+    <small>{{entry.pub_date}}</small>
+
+    {{entry.text}}
+
+    <a href = "{% url 'todo:home' %}"> Homepage </a>
+</body>
+</html>

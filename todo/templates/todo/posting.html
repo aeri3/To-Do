@@ -1,0 +1,10 @@
+<ul>
+    {% for entry in todos %}
+        <div style="border: 2px #7BA077 solid; margin: 10px; padding-left: 20px;">
+            <p><a href="{% url 'todo:entry' entry.id %}"> {{entry.title}} </a></p>
+            <p>{{entry.pub_date}}</p> 
+            <a href="{% url 'todo:delete' entry.id %}"> Delete </a>
+
+        </div>
+    {% endfor %}
+</ul>

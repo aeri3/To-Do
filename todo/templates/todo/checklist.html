@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    </head>
+
+    <title>To - Do List</title>
+
+    <style>
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background-color: #fff;
+            padding : mgh-medium
+        }
+        header {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background-color: #7BA077;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+
+        }
+
+        #container {width: 70%; text-align: center; padding: 20px;}
+        
+    </style>
+
+    
+
+    <body>
+        <header>
+            <h1 class="title is-1">Checklist</h1>
+            <p>{{ current_date|date:"F j, Y" }}</p>
+        </header>
+
+
+        <section class="section">
+            <div class="container">
+                
+                {% include 'todo/tabs.html' %}
+              
+                <form method="post" action="{% url 'todo:add_checklist' %}">
+                    {% csrf_token %}
+                    <div class="field has-addons">
+                        <div class="control">
+                            <input class="input" type="text" name="new_item" placeholder="New item" required>
+                        </div>
+                        <ul>
+                            <div class="control">
+                                <input class="button is-focused" type="submit" value="Add">
+                            </div>
+                        </ul>
+                    </div>
+                </form>
+
+                <h2 class="title is-2"> </h2>
+
+                <form action="" method="post">
+                        {% for checklist in checklist_items %}
+                        <div class="box">
+                                <label class="checkbox">
+                                    <input type="checkbox">          {{ checklist.title }}  </input>
+                                </label>
+                                <a style="float: right;" class="delete is-small" href="{% url 'todo:delete_checklist' checklist.id %}"></a>
+
+                        </div>
+                        {% endfor %}
+                </form>
+            </div>
+        </section>
+
+
+
+    </body>
+</html>
